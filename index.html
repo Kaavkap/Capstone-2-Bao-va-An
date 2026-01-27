@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Website Bán Hàng</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-gray-800">🛒 Website Bán Hàng</h1>
+
+    <select id="filterSelect" onchange="handleFilter()" class="border px-4 py-2 rounded">
+      <option value="all">Tất cả</option>
+      <option value="Samsung">Samsung</option>
+      <option value="iphone">iPhone</option>
+    </select>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+    <!-- Product List -->
+    <section class="lg:col-span-2">
+      <h2 class="text-xl font-semibold mb-4">Danh sách sản phẩm</h2>
+      <div id="productList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- Cart -->
+    <section class="bg-white rounded shadow p-4">
+      <h2 class="text-xl font-semibold mb-4">🛍 Giỏ hàng</h2>
+
+      <table class="w-full text-sm border-collapse">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border p-2">Hình</th>
+            <th class="border p-2">Tên</th>
+            <th class="border p-2">Giá</th>
+            <th class="border p-2">SL</th>
+            <th class="border p-2">Tổng</th>
+            <th class="border p-2">Xóa</th>
+          </tr>
+        </thead>
+        <tbody id="cartBody"></tbody>
+      </table>
+
+      <!-- Total -->
+      <div class="mt-4 flex justify-between items-center">
+        <p class="text-lg font-semibold">
+          Tổng tiền: <span id="totalPrice" class="text-red-500">0</span>$
+        </p>
+        <button onclick="checkout()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+          Thanh toán
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
