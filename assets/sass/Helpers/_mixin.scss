@@ -1,0 +1,48 @@
+@import "variable";
+
+// --- Hỗ trợ cấu hình theme CSS Variables tự động ---
+@mixin theme-variables {
+    --primary: #{$primary};
+    --primary-hover: #{$primary-hover};
+
+    // Default Light Mode
+    --bg-app: #{$light-bg-app};
+    --bg-surface: #{$light-bg-surface};
+    --bg-1: #{$light-bg-1};
+    --text-main: #{$light-text-main};
+    --text-muted: #{$light-text-muted};
+    --border: #{$light-border};
+    --shadow: #{$light-shadow};
+    --text-logo: #{$light-text-logo};
+    --text-brand: #{$light-text-brand};
+
+    // sử dụng dark mode khi html có class="dark"
+    &.dark {
+        --bg-app: #{$dark-bg-app};
+        --bg-surface: #{$dark-bg-surface};
+        --bg-1: #{$dark-bg-1};
+        --text-main: #{$dark-text-main};
+        --text-muted: #{$dark-text-muted};
+        --border: #{$dark-border};
+        --shadow: #{$dark-shadow};
+        --text-logo: #{$dark-text-logo};
+        --text-brand: #{$dark-text-brand};
+    }
+}
+
+// --- Hàm lấy giá trị từ map với giá trị mặc định nếu key không tồn tại ---
+@function map-get-safe($map, $key, $default: null) {
+    @if map-has-key($map, $key) {
+        @return map-get($map, $key);
+    }
+    @return $default;
+}
+
+// --- Mixin hỗ trợ media query cho responsive design ---
+@mixin respond-to($bp) {
+    @if $bp == sm {
+        @media (max-width: 640px) {
+            @content;
+        }
+    }
+}

@@ -1,0 +1,5 @@
+@import "../Helpers/mixin";
+
+:root {
+  @include theme-variables;
+}
