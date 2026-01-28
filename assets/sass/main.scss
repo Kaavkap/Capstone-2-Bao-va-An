@@ -1,0 +1,11 @@
+@import "Helpers/variable";
+@import "Base/reset";
+@import "Helpers/mixin";
+
+// Khởi tạo CSS Variables cho theme
+:root {
+    @include theme-variables;
+}
+
+@import "Pages/user";
+@import "Layout/header";

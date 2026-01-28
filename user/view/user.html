@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Website Bán Hàng</title>
+
+        <!-- Material Symbols -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+            integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Theme Configuration -->
+        <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#2463eb",
+                            "background-light": "#f6f6f8",
+                            "background-dark": "#111621",
+                            danger: "#DC2626",
+                            success: "#16A34A",
+                            "text-main": "#111827",
+                        },
+                        fontFamily: {
+                            display: ["Inter", "sans-serif"],
+                            body: ["Inter", "sans-serif"],
+                        },
+                        borderRadius: {
+                            DEFAULT: "0.5rem",
+                            lg: "1rem",
+                            xl: "1.5rem",
+                            full: "9999px",
+                        },
+                    },
+                },
+            };
+        </script>
+    </head>
+
+    <!-- my css -->
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <!-- Logo & Tagline -->
+                    <a href="#">
+                        <div class="logo-section">
+                            <div class="logo-wrapper">
+                                <div class="logo-icon">
+                                    <i class="fab fa-audible"></i>
+                                </div>
+                                <div class="brand">
+                                    <h1>B&A Mobile</h1>
+                                    <p>by Bảo & Ân</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Navigation Tabs -->
+                    <nav>
+                        <a href="#" class="active">Shop</a>
+                        <a href="#">Admin</a>
+                    </nav>
+
+                    <!-- Utilities -->
+                    <div class="utilities">
+                        <!-- Search Bar -->
+                        <div class="search-bar">
+                            <i class="fa fa-search"></i>
+                            <input placeholder="Search..." type="text" />
+                        </div>
+
+                        <!-- Cart -->
+                        <button class="cart-button">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span class="cart-badge">3</span>
+                        </button>
+
+                        <!-- Theme Toggle -->
+                        <button
+                            class="theme-toggle"
+                            id="theme-toggle"
+                            title="Toggle Dark Mode"
+                        >
+                            <i class="fa fa-sun"></i>
+                        </button>
+
+                        <!-- Mobile Menu Button -->
+                        <button class="mobile-menu-btn">
+                            <span class="material-symbols-outlined">menu</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <!-- filter -->
+        <select id="filterSelect" onchange="handleFilter()">
+            <option value="all">Tất cả</option>
+            <option value="Samsung">Samsung</option>
+            <option value="iphone">iPhone</option>
+        </select>
+        <main
+            class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-6"
+        >
+            <!-- Product List -->
+            <section class="lg:col-span-2">
+                <h2 class="text-xl font-semibold mb-4">Danh sách sản phẩm</h2>
+                <div
+                    id="productList"
+                    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+                ></div>
+            </section>
+
+            <!-- Cart -->
+            <section class="bg-white rounded shadow p-4">
+                <h2 class="text-xl font-semibold mb-4">🛍 Giỏ hàng</h2>
+
+                <table class="w-full text-sm border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="border p-2">Hình</th>
+                            <th class="border p-2">Tên</th>
+                            <th class="border p-2">Giá</th>
+                            <th class="border p-2">SL</th>
+                            <th class="border p-2">Tổng</th>
+                            <th class="border p-2">Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartBody"></tbody>
+                </table>
+
+                <!-- Total -->
+                <div class="mt-4 flex justify-between items-center">
+                    <p class="text-lg font-semibold">
+                        Tổng tiền:
+                        <span id="totalPrice" class="text-red-500">0</span>$
+                    </p>
+                    <button
+                        onclick="checkout()"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+                    >
+                        Thanh toán
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <script src="../../shared/utils/helpers.js"></script>
+        <script type="module" src="../controller/main.js"></script>
+    </body>
+</html>
