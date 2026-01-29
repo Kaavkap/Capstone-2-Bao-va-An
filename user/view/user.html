@@ -33,36 +33,8 @@
         <!-- my css -->
         <link rel="stylesheet" href="../../assets/css/main.css" />
 
-        <!-- Tailwind CSS -->
-        <script src="https://cdn.tailwindcss.com"></script>
-        <!-- Theme Configuration -->
-        <script id="tailwind-config">
-            tailwind.config = {
-                darkMode: "class",
-                theme: {
-                    extend: {
-                        colors: {
-                            primary: "#2463eb",
-                            "background-light": "#f6f6f8",
-                            "background-dark": "#111621",
-                            danger: "#DC2626",
-                            success: "#16A34A",
-                            "text-main": "#111827",
-                        },
-                        fontFamily: {
-                            display: ["Inter", "sans-serif"],
-                            body: ["Inter", "sans-serif"],
-                        },
-                        borderRadius: {
-                            DEFAULT: "0.5rem",
-                            lg: "1rem",
-                            xl: "1.5rem",
-                            full: "9999px",
-                        },
-                    },
-                },
-            };
-        </script>
+        <!-- axios  -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
 
     <body>
@@ -173,11 +145,7 @@
                     <div class="sort-price">
                         <span>Sort price:</span>
 
-                        <select
-                            id="sortPrice"
-                            onchange="sortByPrice()"
-                            class="product-sort-select"
-                        >
+                        <select id="sortPrice" class="product-sort-select">
                             <i class="fa fa-sort-amount-down"></i>
                             <option value="-1">--</option>
                             <option value="0">Giá tăng dần</option>
@@ -472,8 +440,7 @@
             });
         </script>
 
-        <!-- my js -->
-        <script src="../../shared/utils/helpers.js"></script>
-        <script type="module" src="../controller/main.js"></script>
+        <!-- User App -->
+        <script type="module" src="../app.js"></script>
     </body>
 </html>
