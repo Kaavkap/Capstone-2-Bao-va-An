@@ -2,6 +2,7 @@
 <html lang="vi">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Website Bán Hàng</title>
 
         <!-- Material Symbols -->
@@ -92,16 +93,10 @@
 
                     <!-- Utilities -->
                     <div class="utilities">
-                        <!-- Search Bar -->
-                        <div class="search-bar">
-                            <i class="fa fa-search"></i>
-                            <input placeholder="Search..." type="text" />
-                        </div>
-
                         <!-- Cart -->
-                        <button class="cart-button">
+                        <button class="cart-button" onclick="openCart()">
                             <i class="fa fa-shopping-cart"></i>
-                            <span class="cart-badge">3</span>
+                            <span class="cart-badge" id="cartCount">0</span>
                         </button>
 
                         <!-- Theme Toggle -->
@@ -124,7 +119,7 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- banner -->
+            <!-- banner section -->
             <section class="banner" id="banner">
                 <div
                     class="banner-image"
@@ -155,62 +150,306 @@
                 ></div>
             </section>
 
-            <!-- filter -->
-            <select id="filterSelect" onchange="handleFilter()" class="">
-                <option value="all">Tất cả</option>
-                <option value="Samsung">Samsung</option>
-                <option value="iphone">iPhone</option>
-            </select>
-
-            <section
-                class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-6"
-                id="productSection"
-            >
-                <!-- Product List -->
-                <article class="lg:col-span-2">
-                    <h2 class="text-xl font-semibold mb-4">
-                        Danh sách sản phẩm
-                    </h2>
-                    <div
-                        id="productList"
-                        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-                    ></div>
-                </article>
-
-                <!-- Cart -->
-                <article class="bg-white rounded shadow p-4">
-                    <h2 class="text-xl font-semibold mb-4">🛍 Giỏ hàng</h2>
-
-                    <table class="w-full text-sm border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="border p-2">Hình</th>
-                                <th class="border p-2">Tên</th>
-                                <th class="border p-2">Giá</th>
-                                <th class="border p-2">SL</th>
-                                <th class="border p-2">Tổng</th>
-                                <th class="border p-2">Xóa</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cartBody"></tbody>
-                    </table>
-
-                    <!-- Total -->
-                    <div class="mt-4 flex justify-between items-center">
-                        <p class="text-lg font-semibold">
-                            Tổng tiền:
-                            <span id="totalPrice" class="text-red-500">0</span>$
-                        </p>
-                        <button
-                            onclick="checkout()"
-                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
-                        >
-                            Thanh toán
+            <!-- product section -->
+            <section id="productSection" class="product">
+                <h1 class="product-title">Our Products</h1>
+                <!-- filter -->
+                <div class="product-filter">
+                    <div class="btn-group">
+                        <button class="btn-filter btn-active" data="all">
+                            All
                         </button>
+                        <button class="btn-filter" data="Samsung">
+                            Samsung
+                        </button>
+                        <button class="btn-filter" data="iPhone">iPhone</button>
                     </div>
-                </article>
+
+                    <div class="search-bar">
+                        <i class="fa fa-search"></i>
+                        <input placeholder="Search by name..." type="text" />
+                    </div>
+
+                    <div class="sort-price">
+                        <span>Sort price:</span>
+
+                        <select
+                            id="sortPrice"
+                            onchange="sortByPrice()"
+                            class="product-sort-select"
+                        >
+                            <i class="fa fa-sort-amount-down"></i>
+                            <option value="-1">--</option>
+                            <option value="0">Giá tăng dần</option>
+                            <option value="1">Giá giảm dần</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- product content -->
+                <div class="product-content" id="productList"></div>
+                <div id="emptyState" class="empty-state">
+                    <div class="empty-state__container">
+                        <div class="empty-state__icon">
+                            <span class="material-symbols-outlined"
+                                >search_off</span
+                            >
+                        </div>
+                        <h4 class="empty-state__heading">No products found</h4>
+                        <p class="empty-state__desc">
+                            We couldn't find any phones matching your search
+                            criteria. Try adjusting your filters or search
+                            terms.
+                        </p>
+                    </div>
+                </div>
             </section>
         </main>
+
+        <!-- footer -->
+        <footer class="footer">
+            <div class="footer-wrapper">
+                <div class="footer-container">
+                    <div class="footer-grid">
+                        <div class="footer-col">
+                            <div class="footer-brand">
+                                <div class="footer-brand-icon">
+                                    <i class="fab fa-audible"></i>
+                                </div>
+                                <h3 class="footer-brand-title">B&A Mobile</h3>
+                            </div>
+                            <p class="footer-description">
+                                Your trusted partner for premium mobile devices
+                                and accessories. Quality and service guaranteed.
+                            </p>
+                            <div class="footer-social">
+                                <a class="footer-social-link" href="#">
+                                    <span class="material-symbols-outlined"
+                                        >public</span
+                                    >
+                                </a>
+                                <a class="footer-social-link" href="#">
+                                    <span class="material-symbols-outlined"
+                                        >mail</span
+                                    >
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="footer-col">
+                            <h4 class="footer-heading">Shop</h4>
+                            <div class="footer-links">
+                                <a class="footer-link" href="#">All Products</a>
+                                <a class="footer-link" href="#">New Arrivals</a>
+                                <a class="footer-link" href="#">Best Sellers</a>
+                                <a class="footer-link" href="#">Discounts</a>
+                            </div>
+                        </div>
+
+                        <div class="footer-col">
+                            <h4 class="footer-heading">Support</h4>
+                            <div class="footer-links">
+                                <a class="footer-link" href="#">Contact Us</a>
+                                <a class="footer-link" href="#"
+                                    >Shipping Policy</a
+                                >
+                                <a class="footer-link" href="#"
+                                    >Returns &amp; Exchanges</a
+                                >
+                                <a class="footer-link" href="#">FAQ</a>
+                            </div>
+                        </div>
+
+                        <div class="footer-col">
+                            <h4 class="footer-heading">Stay Updated</h4>
+                            <p class="footer-text">
+                                Subscribe to our newsletter for the latest
+                                updates and exclusive offers.
+                            </p>
+                            <div class="footer-newsletter">
+                                <input
+                                    class="footer-input"
+                                    placeholder="Enter your email"
+                                    type="email"
+                                />
+                                <button class="footer-button" type="button">
+                                    <span class="material-symbols-outlined"
+                                        >send</span
+                                    >
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <p class="footer-copyright">
+                            © 2026 B&A Mobile. All rights reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Product Detail Sidebar -->
+        <div class="product-detail-sidebar" id="productDetailSidebar">
+            <div
+                class="product-detail-overlay"
+                onclick="closeProductDetail()"
+            ></div>
+            <div class="product-detail-panel">
+                <div class="product-detail-header">
+                    <h2 class="product-detail-title">Chi tiết sản phẩm</h2>
+                    <button
+                        class="product-detail-close"
+                        onclick="closeProductDetail()"
+                        type="button"
+                    >
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+
+                <div class="product-detail-content">
+                    <div class="product-detail-image">
+                        <img id="detailImg" src="" alt="Product" />
+                    </div>
+
+                    <div class="product-detail-info">
+                        <span class="product-detail-type" id="detailType"
+                            >Samsung</span
+                        >
+                        <h3 class="product-detail-name" id="detailName">
+                            Samsung Galaxy S24 Ultra
+                        </h3>
+
+                        <div class="product-detail-price-section">
+                            <span class="product-detail-price" id="detailPrice"
+                                >21,690,000đ</span
+                            >
+                            <div class="product-detail-rating">
+                                <span class="material-symbols-outlined"
+                                    >star</span
+                                >
+                                4.8
+                            </div>
+                        </div>
+
+                        <p class="product-detail-desc" id="detailDesc">
+                            The ultimate smartphone experience with S Pen
+                            included.
+                        </p>
+
+                        <div class="product-detail-specs">
+                            <h4 class="product-detail-specs-title">
+                                Thông số kỹ thuật
+                            </h4>
+
+                            <div class="product-detail-spec-item">
+                                <span class="spec-label">Màn hình:</span>
+                                <span class="spec-value" id="detailScreen"
+                                    >QHD+ (1440 x 3088 pixels)</span
+                                >
+                            </div>
+
+                            <div class="product-detail-spec-item">
+                                <span class="spec-label">Camera sau:</span>
+                                <span class="spec-value" id="detailBackCamera"
+                                    >108 MP + 12 MP + 10 MP + 10 MP</span
+                                >
+                            </div>
+
+                            <div class="product-detail-spec-item">
+                                <span class="spec-label">Camera trước:</span>
+                                <span class="spec-value" id="detailFrontCamera"
+                                    >40MP</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="product-detail-actions">
+                            <button
+                                class="product-detail-btn product-detail-btn--cart"
+                                type="button"
+                            >
+                                <span class="material-symbols-outlined"
+                                    >add_shopping_cart</span
+                                >
+                                Thêm vào giỏ
+                            </button>
+                            <button
+                                class="product-detail-btn product-detail-btn--buy"
+                                type="button"
+                            >
+                                Mua ngay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Sidebar -->
+        <div class="cart-sidebar" id="cartSidebar">
+            <div class="cart-sidebar-overlay" onclick="closeCart()"></div>
+            <div class="cart-sidebar-panel">
+                <div class="cart-sidebar-header">
+                    <h2 class="cart-sidebar-title">
+                        <span class="material-symbols-outlined"
+                            >shopping_cart</span
+                        >
+                        Giỏ hàng
+                    </h2>
+                    <button
+                        class="cart-sidebar-close"
+                        onclick="closeCart()"
+                        type="button"
+                    >
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+
+                <div class="cart-sidebar-content" id="cartBody">
+                    <!-- Cart items will be rendered here by JS -->
+                </div>
+
+                <div class="cart-sidebar-footer">
+                    <div class="cart-total">
+                        <span class="cart-total-label">Tổng cộng:</span>
+                        <span class="cart-total-value" id="totalPrice">0₫</span>
+                    </div>
+                    <button
+                        class="cart-checkout-btn"
+                        onclick="checkout()"
+                        type="button"
+                    >
+                        <span class="material-symbols-outlined"
+                            >shopping_bag</span
+                        >
+                        Thanh toán
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom Alert Modal -->
+        <div class="custom-alert" id="customAlert">
+            <div class="custom-alert-overlay" onclick="closeAlert()"></div>
+            <div class="custom-alert-box">
+                <div class="custom-alert-icon" id="alertIcon">
+                    <span class="material-symbols-outlined">check_circle</span>
+                </div>
+                <h3 class="custom-alert-title" id="alertTitle">Thành công!</h3>
+                <p class="custom-alert-message" id="alertMessage">
+                    Thao tác của bạn đã được thực hiện thành công.
+                </p>
+                <button
+                    class="custom-alert-btn"
+                    onclick="closeAlert()"
+                    type="button"
+                >
+                    Đóng
+                </button>
+            </div>
+        </div>
 
         <!-- jquery -->
         <script

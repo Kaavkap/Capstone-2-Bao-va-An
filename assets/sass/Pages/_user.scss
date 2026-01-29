@@ -1,38 +1,35 @@
 @import "../Helpers/variable";
 @import "../Helpers/mixin";
 
+// Import Components
+@import "../Components/banner";
+@import "../Components/product-filter";
+@import "../Components/product-card";
+@import "../Components/empty-state";
+@import "../Components/product-detail-sidebar";
+@import "../Components/cart-sidebar";
+@import "../Components/custom-alert";
+@import "../Components/footer";
+
+// User Page Layout
 body {
     background-color: var(--bg-app);
     min-height: 100vh;
+}
 
-    .main-content {
-        background-color: var(--bg-app);
-        margin-top: 1rem;
-        padding: 0 1rem;
+.main-content {
+    background-color: var(--bg-app);
+    padding: 0 1rem;
+    max-width: $max-content-width-xl;
+    margin: 1rem auto;
+}
 
-        .banner {
-            cursor: pointer;
-            border-radius: 1rem;
-            background-color: $white;
-            padding: 0.25rem;
-            max-width: $max-content-width-xl;
-            margin: 0 auto;
+// Product Section
+.product {
+    margin-top: 1.75rem;
+}
 
-            .banner-image {
-                height: 500px;
-                overflow: hidden;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: 95%;
-
-                @include respond-to(md) {
-                    height: 500px;
-                }
-
-                @include respond-to(sm) {
-                    height: 350px;
-                }
-            }
-        }
-    }
+.product-title {
+    @include text(32px, 700, var(--text-main), 1.25);
+    margin-bottom: 0.5rem;
 }
