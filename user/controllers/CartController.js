@@ -119,6 +119,12 @@ const attachListeners = () => {
     if (checkoutBtn) {
         checkoutBtn.onclick = () => checkout();
     }
+
+    // Nút xóa tất cả
+    const clearCartBtn = document.getElementById("clearCartBtn");
+    if (clearCartBtn) {
+        clearCartBtn.addEventListener("click", clearAll);
+    }
 };
 
 // Thêm sản phẩm vào giỏ
@@ -146,6 +152,29 @@ const checkout = () => {
         "success",
         "Thanh toán thành công!",
         "Cảm ơn bạn đã mua hàng. Đơn hàng của bạn sẽ được xử lý sớm nhất.",
+    );
+};
+
+// Xóa toàn bộ giỏ hàng
+const clearAll = () => {
+    if (CartService.isEmpty()) {
+        Alert.show("info", "Giỏ hàng trống", "Không có sản phẩm nào để xóa");
+        return;
+    }
+
+    Alert.show(
+        "warning",
+        "Xác nhận xóa",
+        "Bạn có chắc chắn muốn xóa tất cả sản phẩm khỏi giỏ hàng?",
+        () => {
+            CartService.clear();
+            render();
+            Alert.show(
+                "success",
+                "Đã xóa",
+                "Đã xóa tất cả sản phẩm khỏi giỏ hàng",
+            );
+        },
     );
 };
 

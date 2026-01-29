@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Web site bán hàng</title>
+        <!-- cdn tailwind css -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div
+            class="h-screen w-full flex flex-col justify-center items-center bg-gray-100 space-y-6"
+        >
+            <h1 class="text-4xl font-bold text-gray-800">
+                Chọn trang bạn muốn truy cập
+            </h1>
+            <div class="space-x-6">
+                <a
+                    href="./user/view/user.html"
+                    class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                    >Trang User</a
+                >
+                <a
+                    href="./admin/view/admin.html"
+                    class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                    >Trang Admin</a
+                >
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,189 @@
+// Table Wrapper
+.admin-table-wrapper {
+    background: var(--bg-surface);
+    border-radius: $radius-lg;
+    box-shadow: var(--shadow);
+    max-height: 500px;
+    overflow-y: auto;
+    position: relative;
+
+    // Scrollbar styling
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--bg-1);
+        border-radius: $radius-md;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: $radius-md;
+
+        &:hover {
+            background: var(--text-muted);
+        }
+    }
+}
+
+// Admin Table
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+
+    thead {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        th {
+            padding: 1rem 0.5rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--primary);
+            color: $white;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid var(--border);
+            transition: background-color 0.2s;
+
+            &:hover {
+                background: var(--bg-1);
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            color: var(--text-main);
+            vertical-align: middle;
+            white-space: normal;
+            word-wrap: break-word;
+            max-width: 250px;
+
+            &:nth-child(6),
+            &:nth-child(7),
+            &:nth-child(8),
+            &:nth-child(9) {
+                font-size: 0.8rem;
+                color: var(--text-muted);
+                max-width: 180px;
+            }
+        }
+    }
+
+    .product-img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: $radius-md;
+        border: 1px solid var(--border);
+    }
+}
+
+// Badge
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &.badge-iphone {
+        background: #e0e7ff;
+        color: #4338ca;
+    }
+
+    &.badge-samsung {
+        background: #dbeafe;
+        color: #1e40af;
+    }
+}
+
+// Action Buttons
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+
+    .material-symbols-outlined {
+        font-size: 1.25rem;
+    }
+
+    &.btn-edit {
+        color: #0ea5e9;
+
+        &:hover {
+            background: #e0f2fe;
+        }
+    }
+
+    &.btn-delete {
+        color: $danger;
+
+        &:hover {
+            background: #fee2e2;
+        }
+    }
+}
+
+// Dark mode adjustments
+html.dark {
+    .badge {
+        &.badge-iphone {
+            background: rgba(67, 56, 202, 0.2);
+            color: #a5b4fc;
+        }
+
+        &.badge-samsung {
+            background: rgba(30, 64, 175, 0.2);
+            color: #93c5fd;
+        }
+    }
+
+    .btn-icon {
+        &.btn-edit:hover {
+            background: rgba(14, 165, 233, 0.1);
+        }
+
+        &.btn-delete:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .admin-table-wrapper {
+        overflow-x: auto;
+    }
+
+    .admin-table {
+        min-width: 800px;
+    }
+}

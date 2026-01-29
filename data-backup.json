@@ -1,0 +1,90 @@
+[
+    {
+        "id": "1",
+        "name": "iPhone 17 Pro Max",
+        "price": 37990000,
+        "screen": "Super Retina XDR (1320 x 2868 Pixels)",
+        "backCamera": "Chính 48 MP & Phụ 48 MP, 48 MP",
+        "frontCamera": "18 MP",
+        "img": "https://cdn.tgdd.vn/Products/Images/42/342679/s16/iphone-17-pro-max-cam-thumb-650x650.png",
+        "desc": "Dynamic Island, Always-On display, and 48MP Main camera.",
+        "type": "iphone"
+    },
+    {
+        "id": "2",
+        "name": "iPhone Air",
+        "price": 25990000,
+        "screen": "Super Retina XDR (1260 x 2736 Pixels)",
+        "backCamera": " 48 MP",
+        "frontCamera": " 18 MP",
+        "img": "https://cdn.tgdd.vn/Products/Images/42/342670/s16/iphone-air-xanh-thumb_0-650x650.png",
+        "desc": "Dynamic Island, Always-On display, and 48MP Main camera.",
+        "type": "iphone"
+    },
+    {
+        "id": "3",
+        "name": "iPhone 16 Pro",
+        "price": 26990000,
+        "screen": "Super Retina XDR (1206 x 2622 Pixels)",
+        "backCamera": "48 MP & Phụ 48 MP, 12 MP",
+        "frontCamera": " 12 MP",
+        "img": "https://cdn.tgdd.vn/Products/Images/42/329149/s16/iphone-16-pro-max-titan-sa-mac-thumbnew-650x650.png",
+        "desc": "Dynamic Island, Always-On display, and 48MP Main camera.",
+        "type": "iphone"
+    },
+    {
+        "id": "4",
+        "name": "iPhone 16e",
+        "price": 15990000,
+        "screen": "6.1 - Tần số quét 60 Hz",
+        "backCamera": "48 MP",
+        "frontCamera": "12 MP",
+        "img": "https://cdn.tgdd.vn/Products/Images/42/334864/s16/iphone-16e-black-thumbtz-650x650.png",
+        "desc": "Dynamic Island, Always-On display, and 48MP Main camera.",
+        "type": "iphone"
+    },
+    {
+        "id": "5",
+        "name": "Samsung Galaxy Z Fold7 5G 256GB Chính Hãng",
+        "price": 38990000,
+        "screen": "Dynamic AMOLED 2X",
+        "backCamera": "Chính 200MP (Camera góc rộng) + 10MP (Camera tele) + 12MP (Camera góc siêu rộng)",
+        "frontCamera": "12MP, Camera màn hình lưng: 10MP, Camera màn hình chính: 10MP",
+        "img": "https://didongviet.vn/_next/image/?url=https%3A%2F%2Fcdn-v2.didongviet.vn%2Ffiles%2Fproducts%2F2025%2F6%2F9%2F1%2F1752071900683_samsung_galaxy_z_fold7_5g_didongviet.png&w=1080&q=75",
+        "desc": "The ultimate smartphone experience with S Pen included.",
+        "type": "Samsung"
+    },
+    {
+        "id": "6",
+        "name": "Samsung Galaxy Z Flip7 256GB Chính Hãng",
+        "price": 23490000,
+        "screen": "Dynamic AMOLED 2X",
+        "backCamera": "200MP + 12MP + 10MP + 50MP",
+        "frontCamera": "12MP",
+        "img": "https://didongviet.vn/_next/image/?url=https%3A%2F%2Fcdn-v2.didongviet.vn%2Ffiles%2Fproducts%2F2025%2F6%2F9%2F1%2F1752069700847_samsung_galaxy_z_flip7_5g_xnah_navy_didongviet.jpg&w=1080&q=75",
+        "desc": "The ultimate smartphone experience with S Pen included.",
+        "type": "Samsung"
+    },
+    {
+        "id": "7",
+        "name": "Samsung Galaxy S22 Ultra 5G 512GB Chính Hãng",
+        "price": 28390000,
+        "screen": "Dynamic AMOLED 2X",
+        "backCamera": "200MP + 12MP + 10MP + 50MP",
+        "frontCamera": "12MP",
+        "img": "https://didongviet.vn/_next/image/?url=https%3A%2F%2Fcdn-v2.didongviet.vn%2Ffiles%2Fmedia%2Fcatalog%2Fproduct%2Fs%2Fa%2Fsamsung-galaxy-s22-ultra-512gb-didongviet.jpg&w=1080&q=75",
+        "desc": "The ultimate smartphone experience with S Pen included.",
+        "type": "Samsung"
+    },
+    {
+        "id": "8",
+        "name": "Samsung Galaxy S24 Ultra 5G 256GB Chính Hãng",
+        "price": 21690000,
+        "screen": "QHD+ (1440 x 3088 pixels)",
+        "backCamera": "108 MP + 12 MP + 10 MP + 10 MP",
+        "frontCamera": "40MP",
+        "img": "https://didongviet.vn/_next/image/?url=https%3A%2F%2Fcdn-v2.didongviet.vn%2Ffiles%2Fproducts%2F2024%2F0%2F18%2F1%2F1705513074513_samsung_galaxy_s24_ultra_xam_didongviet.png&w=1080&q=75",
+        "desc": "The ultimate smartphone experience with S Pen included.",
+        "type": "Samsung"
+    }
+]

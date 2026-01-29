@@ -4,6 +4,7 @@ import { formatPrice } from "../utils/formatter.js";
 let allProducts = [];
 let currentFilter = "all";
 let currentSort = "";
+let currentSearchTerm = "";
 
 // Khởi tạo products
 const init = (products) => {
@@ -11,6 +12,7 @@ const init = (products) => {
     render(products);
     attachFilterListeners();
     attachSortListener();
+    attachSearchListener();
 };
 
 // Render danh sách sản phẩm
@@ -130,6 +132,21 @@ const attachSortListener = () => {
     }
 };
 
+// Gắn event listener cho search input
+const attachSearchListener = () => {
+    const searchInput = document.querySelector(".search-bar input");
+    if (!searchInput) return;
+
+    let debounceTimer;
+    searchInput.addEventListener("input", (e) => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+            currentSearchTerm = e.target.value.trim();
+            applyFilterAndSort();
+        }, 300); // Debounce 300ms
+    });
+};
+
 // Xử lý filter
 const handleFilter = (type) => {
     currentFilter = type;
@@ -138,8 +155,19 @@ const handleFilter = (type) => {
 
 // Áp dụng filter và sort
 const applyFilterAndSort = () => {
-    let filtered = ProductService.filterByType(allProducts, currentFilter);
+    let filtered = [...allProducts];
 
+    // 1. Search by name (tìm trong TẤT CẢ sản phẩm trước)
+    if (currentSearchTerm) {
+        filtered = filtered.filter((p) =>
+            p.name.toLowerCase().includes(currentSearchTerm.toLowerCase()),
+        );
+    }
+
+    // 2. Filter by type (áp dụng lên kết quả search)
+    filtered = ProductService.filterByType(filtered, currentFilter);
+
+    // 3. Sort by price (áp dụng lên kết quả cuối)
     if (currentSort) {
         filtered = ProductService.sortByPrice(filtered, currentSort);
     }

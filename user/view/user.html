@@ -60,7 +60,7 @@
                     <!-- Navigation Tabs -->
                     <nav>
                         <a href="#" class="active">Shop</a>
-                        <a href="#">Admin</a>
+                        <a href="../../admin/view/admin.html">Admin</a>
                     </nav>
 
                     <!-- Utilities -->
@@ -82,12 +82,36 @@
 
                         <!-- Mobile Menu Button -->
                         <button class="mobile-menu-btn">
-                            <span class="material-symbols-outlined">menu</span>
+                            <i
+                                class="fa fa-bars"
+                                style="font-size: 1.25rem"
+                            ></i>
                         </button>
                     </div>
                 </div>
             </div>
         </header>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav__overlay" id="mobileNavOverlay"></div>
+            <div class="mobile-nav__content">
+                <div class="mobile-nav__header">
+                    <h3 class="mobile-nav__title">Menu</h3>
+                    <button class="mobile-nav__close" id="mobileNavClose">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                <nav class="mobile-nav__links">
+                    <a href="#" class="mobile-nav__link active">Shop</a>
+                    <a
+                        href="../../admin/view/admin.html"
+                        class="mobile-nav__link"
+                        >Admin</a
+                    >
+                </nav>
+            </div>
+        </div>
 
         <!-- Main Content -->
         <main class="main-content">
@@ -241,9 +265,7 @@
                                     type="email"
                                 />
                                 <button class="footer-button" type="button">
-                                    <span class="material-symbols-outlined"
-                                        >send</span
-                                    >
+                                    <i class="fa fa-paper-plane"></i>
                                 </button>
                             </div>
                         </div>
@@ -384,16 +406,28 @@
                         <span class="cart-total-label">Tổng cộng:</span>
                         <span class="cart-total-value" id="totalPrice">0₫</span>
                     </div>
-                    <button
-                        class="cart-checkout-btn"
-                        onclick="checkout()"
-                        type="button"
-                    >
-                        <span class="material-symbols-outlined"
-                            >shopping_bag</span
+                    <div class="cart-actions">
+                        <button
+                            class="cart-clear-btn"
+                            id="clearCartBtn"
+                            type="button"
                         >
-                        Thanh toán
-                    </button>
+                            <span class="material-symbols-outlined"
+                                >delete_sweep</span
+                            >
+                            Xóa tất cả
+                        </button>
+                        <button
+                            class="cart-checkout-btn"
+                            onclick="checkout()"
+                            type="button"
+                        >
+                            <span class="material-symbols-outlined"
+                                >shopping_bag</span
+                            >
+                            Thanh toán
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -409,13 +443,35 @@
                 <p class="custom-alert-message" id="alertMessage">
                     Thao tác của bạn đã được thực hiện thành công.
                 </p>
+                <!-- Single button (for normal alerts) -->
                 <button
                     class="custom-alert-btn"
-                    onclick="closeAlert()"
+                    id="alertSingleBtn"
                     type="button"
                 >
                     Đóng
                 </button>
+                <!-- Confirm buttons (for confirmation dialogs) -->
+                <div
+                    class="custom-alert-actions"
+                    id="alertConfirmBtns"
+                    style="display: none"
+                >
+                    <button
+                        class="custom-alert-btn custom-alert-btn--secondary"
+                        id="alertCancelBtn"
+                        type="button"
+                    >
+                        Hủy
+                    </button>
+                    <button
+                        class="custom-alert-btn custom-alert-btn--primary"
+                        id="alertConfirmBtn"
+                        type="button"
+                    >
+                        Xác nhận
+                    </button>
+                </div>
             </div>
         </div>
 
