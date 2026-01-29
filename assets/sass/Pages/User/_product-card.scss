@@ -1,7 +1,6 @@
-@import "../Helpers/variable";
-@import "../Helpers/mixin";
+@import "../../Helpers/variable";
+@import "../../Helpers/mixin";
 
-// Product Card Component
 .product-content {
     display: grid;
     grid-template-columns: 1fr;

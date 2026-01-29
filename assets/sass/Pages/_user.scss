@@ -1,15 +1,19 @@
 @import "../Helpers/variable";
 @import "../Helpers/mixin";
 
-// Import Components
-@import "../Components/banner";
-@import "../Components/product-filter";
-@import "../Components/product-card";
+// Import Layout (shared across all pages)
+@import "../Layout/footer";
+
+// Import Reusable Components
 @import "../Components/empty-state";
-@import "../Components/product-detail-sidebar";
-@import "../Components/cart-sidebar";
 @import "../Components/custom-alert";
-@import "../Components/footer";
+
+// Import User Page Components
+@import "User/banner";
+@import "User/product-filter";
+@import "User/product-card";
+@import "User/product-detail-sidebar";
+@import "User/cart-sidebar";
 
 // User Page Layout
 body {
