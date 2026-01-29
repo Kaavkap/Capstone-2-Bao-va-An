@@ -23,9 +23,14 @@ body {
 
 .main-content {
     background-color: var(--bg-app);
-    padding: 0 1rem;
-    max-width: $max-content-width-xl;
+    padding: 0 $section-padding-x;
     margin: 1rem auto;
+
+    > * {
+        max-width: $max-content-width-xl;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 // Product Section

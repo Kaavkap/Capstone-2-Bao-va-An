@@ -11,18 +11,12 @@
 .footer-wrapper {
     display: flex;
     justify-content: center;
-    padding-left: 1rem;
-    padding-right: 1rem;
-
-    @media (min-width: map-get($breakpoint, md)) {
-        padding-left: 2.5rem;
-        padding-right: 2.5rem;
-    }
+    padding: 0 $section-padding-x;
 }
 
 .footer-container {
     width: 100%;
-    max-width: 1200px;
+    max-width: $max-content-width-xl;
 }
 
 .footer-grid {

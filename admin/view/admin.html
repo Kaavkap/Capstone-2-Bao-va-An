@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin - B&A Mobile</title>
+
+        <!-- Material Symbols -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+            integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+
+        <!-- My CSS -->
+        <link rel="stylesheet" href="../../assets/css/main.css" />
+
+        <!-- Axios -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <!-- Logo & Tagline -->
+                    <a href="../../user/view/user.html">
+                        <div class="logo-section">
+                            <div class="logo-wrapper">
+                                <div class="logo-icon">
+                                    <i class="fab fa-audible"></i>
+                                </div>
+                                <div class="brand">
+                                    <h1>B&A Mobile</h1>
+                                    <p>by Bảo & Ân</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Navigation Tabs -->
+                    <nav>
+                        <a href="../../user/view/user.html">Shop</a>
+                        <a href="#" class="active">Admin</a>
+                    </nav>
+
+                    <!-- Utilities -->
+                    <div class="utilities">
+                        <!-- Theme Toggle -->
+                        <button
+                            class="theme-toggle"
+                            id="theme-toggle"
+                            title="Toggle Dark Mode"
+                        >
+                            <i class="fa fa-sun"></i>
+                        </button>
+
+                        <!-- Mobile Menu Button -->
+                        <button class="mobile-menu-btn">
+                            <i
+                                class="fa fa-bars"
+                                style="font-size: 1.25rem"
+                            ></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav__overlay" id="mobileNavOverlay"></div>
+            <div class="mobile-nav__content">
+                <div class="mobile-nav__header">
+                    <h3 class="mobile-nav__title">Menu</h3>
+                    <button class="mobile-nav__close" id="mobileNavClose">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                <nav class="mobile-nav__links">
+                    <a href="../../user/view/user.html" class="mobile-nav__link"
+                        >Shop</a
+                    >
+                    <a href="#" class="mobile-nav__link active">Admin</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Admin Section -->
+            <section class="admin-section">
+                <div class="admin-header">
+                    <h1 class="admin-title">Quản lý sản phẩm</h1>
+                    <button
+                        class="btn btn-primary"
+                        id="btnAddProduct"
+                        type="button"
+                    >
+                        <span class="material-symbols-outlined">add</span>
+                        Thêm sản phẩm
+                    </button>
+                </div>
+
+                <!-- Filters & Search -->
+                <div class="admin-filters">
+                    <div class="search-bar">
+                        <i class="fa fa-search"></i>
+                        <input
+                            id="searchInput"
+                            placeholder="Tìm kiếm theo tên sản phẩm..."
+                            type="text"
+                        />
+                    </div>
+
+                    <div class="sort-price">
+                        <span>Sắp xếp giá:</span>
+                        <select id="sortPrice" class="product-sort-select">
+                            <option value="">Mặc định</option>
+                            <option value="asc">Giá tăng dần</option>
+                            <option value="desc">Giá giảm dần</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Product Table -->
+                <div class="admin-table-wrapper">
+                    <table class="admin-table" id="productTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Hình ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Loại</th>
+                                <th>Màn hình</th>
+                                <th>Camera sau</th>
+                                <th>Camera trước</th>
+                                <th>Mô tả</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody">
+                            <!-- Product rows will be inserted here -->
+                        </tbody>
+                    </table>
+
+                    <!-- Empty State -->
+                    <div
+                        id="emptyState"
+                        class="empty-state"
+                        style="display: none"
+                    >
+                        <div class="empty-state__container">
+                            <div class="empty-state__icon">
+                                <span class="material-symbols-outlined"
+                                    >inventory_2</span
+                                >
+                            </div>
+                            <h4 class="empty-state__heading">
+                                Không có sản phẩm
+                            </h4>
+                            <p class="empty-state__desc">
+                                Chưa có sản phẩm nào trong hệ thống. Nhấn "Thêm
+                                sản phẩm" để bắt đầu.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-wrapper">
+                <div class="footer-container">
+                    <div class="footer-grid">
+                        <div class="footer-col">
+                            <div class="footer-brand">
+                                <div class="footer-brand-icon">
+                                    <i class="fab fa-audible"></i>
+                                </div>
+                                <h3 class="footer-brand-title">B&A Mobile</h3>
+                            </div>
+                            <p class="footer-description">
+                                Your trusted partner for premium mobile devices
+                                and accessories. Quality and service guaranteed.
+                            </p>
+                            <div class="footer-social">
+                                <a class="footer-social-link" href="#">
+                                    <span class="material-symbols-outlined"
+                                        >public</span
+                                    >
+                                </a>
+                                <a class="footer-social-link" href="#">
+                                    <span class="material-symbols-outlined"
+                                        >mail</span
+                                    >
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="footer-col">
+                            <h4 class="footer-heading">Shop</h4>
+                            <div class="footer-links">
+                                <a class="footer-link" href="#">All Products</a>
+                                <a class="footer-link" href="#">New Arrivals</a>
+                                <a class="footer-link" href="#">Best Sellers</a>
+                                <a class="footer-link" href="#">Discounts</a>
+                            </div>
+                        </div>
+
+                        <div class="footer-col">
+                            <h4 class="footer-heading">Support</h4>
+                            <div class="footer-links">
+                                <a class="footer-link" href="#">Contact Us</a>
+                                <a class="footer-link" href="#"
+                                    >Shipping Policy</a
+                                >
+                                <a class="footer-link" href="#"
+                                    >Returns &amp; Exchanges</a
+                                >
+                                <a class="footer-link" href="#">FAQ</a>
+                            </div>
+                        </div>
+
+                        <div class="footer-col">
+                            <h4 class="footer-heading">Stay Updated</h4>
+                            <p class="footer-text">
+                                Subscribe to our newsletter for the latest
+                                updates and exclusive offers.
+                            </p>
+                            <div class="footer-newsletter">
+                                <input
+                                    class="footer-input"
+                                    placeholder="Enter your email"
+                                    type="email"
+                                />
+                                <button class="footer-button" type="button">
+                                    <i class="fa fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <p class="footer-copyright">
+                            © 2026 B&A Mobile. All rights reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Product Form Modal -->
+        <div class="modal" id="productModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modalTitle">
+                        Thêm sản phẩm mới
+                    </h2>
+                    <button
+                        class="modal-close"
+                        id="btnCloseModal"
+                        type="button"
+                    >
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+
+                <form class="modal-body" id="productForm">
+                    <div class="form-group">
+                        <label for="productName"
+                            >Tên sản phẩm <span class="required">*</span></label
+                        >
+                        <input
+                            type="text"
+                            id="productName"
+                            class="form-input"
+                            placeholder="Nhập tên sản phẩm"
+                        />
+                        <span class="form-error" id="errorName"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productPrice"
+                            >Giá <span class="required">*</span></label
+                        >
+                        <input
+                            type="number"
+                            id="productPrice"
+                            class="form-input"
+                            placeholder="Nhập giá sản phẩm"
+                            min="0"
+                        />
+                        <span class="form-error" id="errorPrice"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productType"
+                            >Loại sản phẩm
+                            <span class="required">*</span></label
+                        >
+                        <select id="productType" class="form-input">
+                            <option value="">-- Chọn loại --</option>
+                            <option value="iPhone">iPhone</option>
+                            <option value="Samsung">Samsung</option>
+                        </select>
+                        <span class="form-error" id="errorType"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productScreen">Màn hình</label>
+                        <input
+                            type="text"
+                            id="productScreen"
+                            class="form-input"
+                            placeholder="VD: Super Retina XDR (1320 x 2868 Pixels)"
+                        />
+                        <span class="form-error" id="errorScreen"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productBackCamera">Camera sau</label>
+                        <input
+                            type="text"
+                            id="productBackCamera"
+                            class="form-input"
+                            placeholder="VD: Chính 48 MP & Phụ 48 MP, 48 MP"
+                        />
+                        <span class="form-error" id="errorBackCamera"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productFrontCamera">Camera trước</label>
+                        <input
+                            type="text"
+                            id="productFrontCamera"
+                            class="form-input"
+                            placeholder="VD: 18 MP"
+                        />
+                        <span class="form-error" id="errorFrontCamera"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productImage"
+                            >URL hình ảnh <span class="required">*</span></label
+                        >
+                        <input
+                            type="url"
+                            id="productImage"
+                            class="form-input"
+                            placeholder="https://example.com/image.jpg"
+                        />
+                        <span class="form-error" id="errorImage"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productDesc"
+                            >Mô tả <span class="required">*</span></label
+                        >
+                        <textarea
+                            id="productDesc"
+                            class="form-input"
+                            placeholder="Nhập mô tả sản phẩm"
+                            rows="4"
+                        ></textarea>
+                        <span class="form-error" id="errorDesc"></span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button
+                            class="btn btn-secondary"
+                            id="btnCancelForm"
+                            type="button"
+                        >
+                            Hủy
+                        </button>
+                        <button
+                            class="btn btn-primary"
+                            id="btnSubmitForm"
+                            type="submit"
+                        >
+                            <span class="material-symbols-outlined">save</span>
+                            Lưu
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Custom Alert Modal -->
+        <div class="custom-alert" id="customAlert">
+            <div class="custom-alert-overlay"></div>
+            <div class="custom-alert-box">
+                <div class="custom-alert-icon" id="alertIcon">
+                    <span class="material-symbols-outlined">check_circle</span>
+                </div>
+                <h3 class="custom-alert-title" id="alertTitle">Thành công!</h3>
+                <p class="custom-alert-message" id="alertMessage">
+                    Thao tác của bạn đã được thực hiện thành công.
+                </p>
+                <button
+                    class="custom-alert-btn"
+                    id="btnCloseAlert"
+                    type="button"
+                >
+                    Đóng
+                </button>
+            </div>
+        </div>
+
+        <!-- Confirm Delete Modal -->
+        <div class="modal" id="confirmModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content modal-small">
+                <div class="modal-header">
+                    <h2 class="modal-title">Xác nhận xóa</h2>
+                </div>
+                <div class="modal-body">
+                    <p class="confirm-message">
+                        Bạn có chắc chắn muốn xóa sản phẩm này?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        class="btn btn-secondary"
+                        id="btnCancelDelete"
+                        type="button"
+                    >
+                        Hủy
+                    </button>
+                    <button
+                        class="btn btn-danger"
+                        id="btnConfirmDelete"
+                        type="button"
+                    >
+                        <span class="material-symbols-outlined">delete</span>
+                        Xóa
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin App -->
+        <script type="module" src="../app.js"></script>
+    </body>
+</html>
