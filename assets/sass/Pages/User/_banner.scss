@@ -1,0 +1,32 @@
+@import "../../Helpers/variable";
+@import "../../Helpers/mixin";
+
+.banner {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: $white;
+    padding: 0.25rem;
+}
+
+.banner-image {
+    height: 500px;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 95%;
+
+    @include respond-to(lg) {
+        height: 400px;
+        max-height: 400px;
+    }
+
+    @include respond-to(md) {
+        height: 350px;
+        max-height: 350px;
+    }
+
+    @include respond-to(sm) {
+        height: 300px;
+        max-height: 300px;
+    }
+}

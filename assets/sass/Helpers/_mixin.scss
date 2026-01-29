@@ -1,5 +1,12 @@
 @import "variable";
 
+@mixin text($size: null, $weight: null, $color: null, $line-height: null) {
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+    line-height: $line-height;
+}
+
 // --- Hỗ trợ cấu hình theme CSS Variables tự động ---
 @mixin theme-variables {
     --primary: #{$primary};
@@ -9,6 +16,7 @@
     --bg-app: #{$light-bg-app};
     --bg-surface: #{$light-bg-surface};
     --bg-1: #{$light-bg-1};
+    --bg-2: #{$light-bg-2};
     --text-main: #{$light-text-main};
     --text-muted: #{$light-text-muted};
     --border: #{$light-border};
@@ -21,6 +29,7 @@
         --bg-app: #{$dark-bg-app};
         --bg-surface: #{$dark-bg-surface};
         --bg-1: #{$dark-bg-1};
+        --bg-2: #{$dark-bg-2};
         --text-main: #{$dark-text-main};
         --text-muted: #{$dark-text-muted};
         --border: #{$dark-border};
@@ -40,9 +49,12 @@
 
 // --- Mixin hỗ trợ media query cho responsive design ---
 @mixin respond-to($bp) {
-    @if $bp == sm {
-        @media (max-width: 640px) {
+    $size: map-get-safe($breakpoint, $bp);
+    @if $size != null {
+        @media (max-width: $size) {
             @content;
         }
+    } @else {
+        @warn "Breakpoint `#{$bp}` không tồn tại trong $breakpoint.";
     }
 }

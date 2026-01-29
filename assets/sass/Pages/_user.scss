@@ -1,5 +1,39 @@
-// User Page Specific Styles
+@import "../Helpers/variable";
+@import "../Helpers/mixin";
+
+// Import Layout (shared across all pages)
+@import "../Layout/footer";
+
+// Import Reusable Components
+@import "../Components/empty-state";
+@import "../Components/custom-alert";
+
+// Import User Page Components
+@import "User/banner";
+@import "User/product-filter";
+@import "User/product-card";
+@import "User/product-detail-sidebar";
+@import "User/cart-sidebar";
+
+// User Page Layout
 body {
-    background-color: #f3f4f6;
+    background-color: var(--bg-app);
     min-height: 100vh;
+}
+
+.main-content {
+    background-color: var(--bg-app);
+    padding: 0 1rem;
+    max-width: $max-content-width-xl;
+    margin: 1rem auto;
+}
+
+// Product Section
+.product {
+    margin-top: 1.75rem;
+}
+
+.product-title {
+    @include text(32px, 700, var(--text-main), 1.25);
+    margin-bottom: 0.5rem;
 }
