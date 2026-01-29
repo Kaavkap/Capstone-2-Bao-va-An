@@ -1,5 +1,12 @@
-// User Page Specific Styles
+@import "../Helpers/variable";
+@import "../Helpers/mixin";
+
 body {
-    background-color: #f3f4f6;
+    background-color: var(--bg-app);
     min-height: 100vh;
+}
+
+main,
+.banner {
+    background-color: var(--bg-app);
 }

@@ -19,6 +19,19 @@
             referrerpolicy="no-referrer"
         />
 
+        <!-- slick carosel -->
+        <link
+            rel="stylesheet"
+            href="../../assets/css/slick-carosel/slick.css"
+        />
+        <link
+            rel="stylesheet"
+            href="../../assets/css/slick-carosel/slick-theme.css"
+        />
+
+        <!-- my css -->
+        <link rel="stylesheet" href="../../assets/css/main.css" />
+
         <!-- Tailwind CSS -->
         <script src="https://cdn.tailwindcss.com"></script>
         <!-- Theme Configuration -->
@@ -51,8 +64,6 @@
         </script>
     </head>
 
-    <!-- my css -->
-    <link rel="stylesheet" href="../../assets/css/main.css" />
     <body>
         <!-- Header -->
         <header>
@@ -112,58 +123,120 @@
         </header>
 
         <!-- Main Content -->
-        <!-- filter -->
-        <select id="filterSelect" onchange="handleFilter()">
-            <option value="all">Tất cả</option>
-            <option value="Samsung">Samsung</option>
-            <option value="iphone">iPhone</option>
-        </select>
-        <main
-            class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-6"
-        >
-            <!-- Product List -->
-            <section class="lg:col-span-2">
-                <h2 class="text-xl font-semibold mb-4">Danh sách sản phẩm</h2>
+        <main class="mt-4 px-4">
+            <!-- banner -->
+            <section
+                class="py-1 max-w-[1280px] mx-auto bg-white banner rounded-2xl cursor-pointer"
+                id="banner"
+            >
                 <div
-                    id="productList"
-                    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+                    class="h-[350px] md:h-[500px] overflow-hidden bg-no-repeat bg-center bg-[length:95%]"
+                    style="
+                        background-image: url(https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:100/plain/https://dashboard.cellphones.com.vn/storage/REDMI-NOTE-15-DESK-0125.png);
+                    "
+                ></div>
+
+                <div
+                    class="h-[350px] md:h-[500px] overflow-hidden bg-no-repeat bg-center bg-[length:96%]"
+                    style="
+                        background-image: url(https://dienthoaigiakho.vn/_next/image?url=https%3A%2F%2Fcdn.dienthoaigiakho.vn%2Fphotos%2F1769484762535-Main-Banner-iphone-16-pro-max-4.jpg&w=3840&q=75);
+                    "
+                ></div>
+
+                <div
+                    class="h-[350px] md:h-[500px] overflow-hidden bg-no-repeat bg-center bg-[length:96%]"
+                    style="
+                        background-image: url(https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:100/plain/https://dashboard.cellphones.com.vn/storage/oppo-reno15-home-opensale.png);
+                    "
+                ></div>
+
+                <div
+                    class="h-[350px] md:h-[500px] overflow-hidden bg-no-repeat bg-center bg-[length:96%]"
+                    style="
+                        background-image: url(https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:100/plain/https://dashboard.cellphones.com.vn/storage/nubia-v80-design-home-0126-v4.png);
+                    "
                 ></div>
             </section>
 
-            <!-- Cart -->
-            <section class="bg-white rounded shadow p-4">
-                <h2 class="text-xl font-semibold mb-4">🛍 Giỏ hàng</h2>
+            <!-- filter -->
+            <select id="filterSelect" onchange="handleFilter()" class="">
+                <option value="all">Tất cả</option>
+                <option value="Samsung">Samsung</option>
+                <option value="iphone">iPhone</option>
+            </select>
 
-                <table class="w-full text-sm border-collapse">
-                    <thead>
-                        <tr class="bg-gray-100">
-                            <th class="border p-2">Hình</th>
-                            <th class="border p-2">Tên</th>
-                            <th class="border p-2">Giá</th>
-                            <th class="border p-2">SL</th>
-                            <th class="border p-2">Tổng</th>
-                            <th class="border p-2">Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cartBody"></tbody>
-                </table>
+            <section
+                class="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-6"
+                id="productSection"
+            >
+                <!-- Product List -->
+                <article class="lg:col-span-2">
+                    <h2 class="text-xl font-semibold mb-4">
+                        Danh sách sản phẩm
+                    </h2>
+                    <div
+                        id="productList"
+                        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+                    ></div>
+                </article>
 
-                <!-- Total -->
-                <div class="mt-4 flex justify-between items-center">
-                    <p class="text-lg font-semibold">
-                        Tổng tiền:
-                        <span id="totalPrice" class="text-red-500">0</span>$
-                    </p>
-                    <button
-                        onclick="checkout()"
-                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
-                    >
-                        Thanh toán
-                    </button>
-                </div>
+                <!-- Cart -->
+                <article class="bg-white rounded shadow p-4">
+                    <h2 class="text-xl font-semibold mb-4">🛍 Giỏ hàng</h2>
+
+                    <table class="w-full text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="border p-2">Hình</th>
+                                <th class="border p-2">Tên</th>
+                                <th class="border p-2">Giá</th>
+                                <th class="border p-2">SL</th>
+                                <th class="border p-2">Tổng</th>
+                                <th class="border p-2">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cartBody"></tbody>
+                    </table>
+
+                    <!-- Total -->
+                    <div class="mt-4 flex justify-between items-center">
+                        <p class="text-lg font-semibold">
+                            Tổng tiền:
+                            <span id="totalPrice" class="text-red-500">0</span>$
+                        </p>
+                        <button
+                            onclick="checkout()"
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+                        >
+                            Thanh toán
+                        </button>
+                    </div>
+                </article>
             </section>
         </main>
 
+        <!-- jquery -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+
+        <!-- slick carosel -->
+        <script src="../../assets/js/slick-carosel/slick.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $(".banner").slick({
+                    arrows: false,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 3000,
+                });
+            });
+        </script>
+
+        <!-- my js -->
         <script src="../../shared/utils/helpers.js"></script>
         <script type="module" src="../controller/main.js"></script>
     </body>

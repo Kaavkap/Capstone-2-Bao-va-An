@@ -7,44 +7,44 @@ let allProducts = [];
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // Load products
-async function fetchProducts() {
-  try {
-    const res = await fetch(API_URL);
-    const data = await res.json();
+const fetchProducts = async () => {
+    try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
 
-    allProducts = data.map(
-      (p) =>
-        new Product(
-          p.id,
-          p.name,
-          p.price,
-          p.screen,
-          p.backCamera,
-          p.frontCamera,
-          p.img,
-          p.desc,
-          p.type,
-        ),
-    );
+        allProducts = data.map(
+            (p) =>
+                new Product(
+                    p.id,
+                    p.name,
+                    p.price,
+                    p.screen,
+                    p.backCamera,
+                    p.frontCamera,
+                    p.img,
+                    p.desc,
+                    p.type,
+                ),
+        );
 
-    renderProducts(allProducts);
-    renderCart(); // Load cart UI on page load
-  } catch (error) {
-    console.error("Lỗi khi lấy dữ liệu:", error);
-  }
-}
+        renderProducts(allProducts);
+        renderCart(); // Load cart UI on page load
+    } catch (error) {
+        console.error("Lỗi khi lấy dữ liệu:", error);
+    }
+};
 
 // Render products
-function renderProducts(products) {
-  const container = document.getElementById("productList");
-  container.innerHTML = "";
+const renderProducts = (products) => {
+    const container = document.getElementById("productList");
+    container.innerHTML = "";
 
-  products.forEach((p) => {
-    const div = document.createElement("div");
-    div.className =
-      "bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden flex flex-col";
+    products.forEach((p) => {
+        const div = document.createElement("div");
+        div.className =
+            "bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden flex flex-col";
 
-    div.innerHTML = `
+        div.innerHTML = `
       <div class="h-48 w-full flex items-center justify-center bg-gray-100 overflow-hidden">
         <img src="${p.img}" alt="${p.name}" class="h-full w-full object-contain" />
       </div>
@@ -65,90 +65,90 @@ function renderProducts(products) {
       </div>
     `;
 
-    container.appendChild(div);
-  });
-}
+        container.appendChild(div);
+    });
+};
 
 // Filter dropdown
-window.handleFilter = function () {
-  const selectedType = document.getElementById("filterSelect").value;
+window.handleFilter = () => {
+    const selectedType = document.getElementById("filterSelect").value;
 
-  if (selectedType === "all") {
-    renderProducts(allProducts);
-  } else {
-    const filtered = allProducts.filter(
-      (p) => p.type.toLowerCase() === selectedType.toLowerCase(),
-    );
-    renderProducts(filtered);
-  }
+    if (selectedType === "all") {
+        renderProducts(allProducts);
+    } else {
+        const filtered = allProducts.filter(
+            (p) => p.type.toLowerCase() === selectedType.toLowerCase(),
+        );
+        renderProducts(filtered);
+    }
 };
 
 // Add to cart
-window.addToCart = function (productId) {
-  const product = allProducts.find((p) => p.id === productId);
-  if (!product) return;
+window.addToCart = (productId) => {
+    const product = allProducts.find((p) => p.id === productId);
+    if (!product) return;
 
-  const existingItem = cart.find((item) => item.id === productId);
+    const existingItem = cart.find((item) => item.id === productId);
 
-  if (existingItem) {
-    existingItem.quantity += 1;
-  } else {
-    const newItem = new CartItem(
-      product.id,
-      product.name,
-      product.price,
-      product.img,
-      1,
-    );
-    cart.push(newItem);
-  }
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        const newItem = new CartItem(
+            product.id,
+            product.name,
+            product.price,
+            product.img,
+            1,
+        );
+        cart.push(newItem);
+    }
 
-  saveCart();
-  renderCart();
+    saveCart();
+    renderCart();
 };
 
 // Increase quantity
-window.increaseQty = function (id) {
-  const item = cart.find((i) => i.id === id);
-  if (item) {
-    item.quantity += 1;
-    saveCart();
-    renderCart();
-  }
+window.increaseQty = (id) => {
+    const item = cart.find((i) => i.id === id);
+    if (item) {
+        item.quantity += 1;
+        saveCart();
+        renderCart();
+    }
 };
 
 // Decrease quantity
-window.decreaseQty = function (id) {
-  const item = cart.find((i) => i.id === id);
-  if (item && item.quantity > 1) {
-    item.quantity -= 1;
-  } else {
-    cart = cart.filter((i) => i.id !== id);
-  }
-  saveCart();
-  renderCart();
+window.decreaseQty = (id) => {
+    const item = cart.find((i) => i.id === id);
+    if (item && item.quantity > 1) {
+        item.quantity -= 1;
+    } else {
+        cart = cart.filter((i) => i.id !== id);
+    }
+    saveCart();
+    renderCart();
 };
 
 // Remove product
-window.removeFromCart = function (id) {
-  cart = cart.filter((item) => item.id !== id);
-  saveCart();
-  renderCart();
+window.removeFromCart = (id) => {
+    cart = cart.filter((item) => item.id !== id);
+    saveCart();
+    renderCart();
 };
 
 // Render cart
-function renderCart() {
-  const tbody = document.getElementById("cartBody");
-  tbody.innerHTML = "";
+const renderCart = () => {
+    const tbody = document.getElementById("cartBody");
+    tbody.innerHTML = "";
 
-  let total = 0;
+    let total = 0;
 
-  cart.forEach((item) => {
-    total += item.price * item.quantity;
+    cart.forEach((item) => {
+        total += item.price * item.quantity;
 
-    const tr = document.createElement("tr");
+        const tr = document.createElement("tr");
 
-    tr.innerHTML = `
+        tr.innerHTML = `
             <td class="border p-2 text-center">
                 <img src="${item.img}" class="w-16 mx-auto">
             </td>
@@ -167,30 +167,37 @@ function renderCart() {
             </td>
         `;
 
-    tbody.appendChild(tr);
-  });
+        tbody.appendChild(tr);
+    });
 
-  document.getElementById("totalPrice").innerText = total;
-}
+    document.getElementById("totalPrice").innerText = total;
+};
 
 // Save cart to localStorage
-function saveCart() {
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
+const saveCart = () => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+};
 
 // Checkout
-window.checkout = function () {
-  if (cart.length === 0) {
-    alert("Giỏ hàng trống!");
-    return;
-  }
+window.checkout = () => {
+    if (cart.length === 0) {
+        alert("Giỏ hàng trống!");
+        return;
+    }
 
-  if (confirm("Bạn có chắc muốn thanh toán?")) {
-    cart = [];
-    saveCart();
-    renderCart();
-    alert("Thanh toán thành công!");
-  }
+    if (confirm("Bạn có chắc muốn thanh toán?")) {
+        cart = [];
+        saveCart();
+        renderCart();
+        alert("Thanh toán thành công!");
+    }
 };
+
+// go to product
+document.getElementById("banner").addEventListener("click", () => {
+    document
+        .getElementById("productList")
+        .scrollIntoView({ behavior: "smooth" });
+});
 
 fetchProducts();
